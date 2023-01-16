@@ -56,12 +56,11 @@ add_message_files(
   Num.msg
 )
 
-## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   Service1.srv
-#   Service2.srv
-# )
+# Generate services in the 'srv' folder
+add_service_files(
+  FILES
+  AddTwoInts.srv
+)
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -80,19 +79,18 @@ generate_messages(
 ## Declare ROS dynamic reconfigure parameters ##
 ################################################
 
-## To declare and build dynamic reconfigure parameters within this
-## package, follow these steps:
-## * In the file package.xml:
-##   * add a build_depend and a exec_depend tag for "dynamic_reconfigure"
-## * In this file (CMakeLists.txt):
-##   * add "dynamic_reconfigure" to
-    find_package(catkin REQUIRED COMPONENTS
-      roscpp
-      rospy
-      std_msgs
-      message_generation
-      message_runtime
-    )
+# To declare and build dynamic reconfigure parameters within this
+# package, follow these steps:
+# * In the file package.xml:
+#   * add a build_depend and a exec_depend tag for "dynamic_reconfigure"
+# * In this file (CMakeLists.txt):
+#   * add "dynamic_reconfigure" to
+  find_package(catkin REQUIRED COMPONENTS
+    roscpp
+    rospy
+    std_msgs
+    message_generation
+  )
 ##   * uncomment the "generate_dynamic_reconfigure_options" section below
 ##     and list every .cfg file to be processed
 
@@ -168,7 +166,7 @@ include_directories(
 
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
-catkin_install_python(PROGRAMS scripts/talker.py
+catkin_install_python(PROGRAMS scripts/talker.py scripts/listener.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
@@ -203,7 +201,7 @@ catkin_install_python(PROGRAMS scripts/talker.py
 install(DIRECTORY launch/
 DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch)
 
-catkin_install_python(PROGRAMS scripts/talker.py scripts/listener.py
+catkin_install_python(PROGRAMS scripts/add_two_ints_server.py scripts/add_two_ints_client.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
